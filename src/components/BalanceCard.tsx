@@ -1,35 +1,42 @@
 import { tokenPerUSD } from "@/components/tokenConversion";
+import imageLogo from "@/components/images/logo-light-sm.png"
+import "@/components/assets/css/vendor.bundle.css";
+import "@/components/assets/css/style.css";
 
 export default function BalanceCard() {
 
     const tokenBalance = 12000;
 
-    return <div className="h-48 bg-blue-600 w-72 flex flex-col col justify-center items-center gap-8 rounded-lg">
-        <div className="flex flex-row justify-center items-center gap-4">
-          <div className="w-8 h-8 rounded-full bg-gray-200"></div>
-          <div className="flex flex-col justify-center items-start">
-            <p className="text-blue-200 text-xs">Token's Balance</p>
-            <p className="text-white text-sm">
-              {tokenBalance} TWZ
-            </p>
-          </div>
-        </div>
-        <div className="flex flex-col justify-center items-start gap-2">
-          <p className="text-blue-200 text-xs">Your Balance</p>
-          <div className="flex flex-row justify-center items-center gap-8">
-            <div className="flex flex-col justify-center items-start">
-              <p className="text-white text-sm">
-              {tokenBalance / tokenPerUSD}
-              </p>
-              <p className="text-blue-200 text-xs">USD</p>
+    return <div className="col-lg-4 ">
+    <div className="token-statistics card card-token height-auto shadow-md	">
+        <div className="card-innr">
+            <div className="token-balance token-balance-with-icon">
+                <div className="token-balance-icon">
+                    <img src={imageLogo.src} alt="logo" />
+                </div>
+                <div className="token-balance-text">
+                    <h6 className="card-sub-title">Tokens Balance</h6>
+                    <span className="lead">120,000,000 <span>TWZ</span></span>
+                </div>
             </div>
-            <div className="flex flex-col justify-center items-start">
-              <p className="text-white text-sm">
-              {tokenBalance / tokenPerUSD}
-              </p>
-              <p className="text-blue-200 text-xs">USD</p>
+            <div className="token-balance token-balance-s2">
+                <h6 className="card-sub-title">Your Contribution</h6>
+                <ul className="token-balance-list">
+                    <li className="token-balance-sub">
+                        <span className="lead">2.646</span>
+                        <span className="sub">ETH</span>
+                    </li>
+                    <li className="token-balance-sub">
+                        <span className="lead">1.265</span>
+                        <span className="sub">BTC</span>
+                    </li>
+                    <li className="token-balance-sub">
+                        <span className="lead">6.506</span>
+                        <span className="sub">LTC</span>
+                    </li>
+                </ul>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
 }
