@@ -7,8 +7,8 @@ export default function BalanceCard() {
 
     const tokenBalance = 12000;
 
-    return <div className="col-lg-4 ">
-    <div className="token-statistics card card-token height-auto shadow-md	">
+    return <div className="w-full p-0 m-0 ">
+    <div className="token-statistics card card-token height-auto shadow-md w-full	">
         <div className="card-innr">
             <div className="token-balance token-balance-with-icon">
                 <div className="token-balance-icon">

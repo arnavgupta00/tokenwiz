@@ -29,7 +29,7 @@ export default function TransactionCard() {
   ];
 
   return (
-    <div className="col-lg-6">
+    <div className="w-full p-0 m-0">
       <div className="token-transaction card card-full-height shadow-md	">
         <div className="card-innr">
           <div className="card-head has-aside">

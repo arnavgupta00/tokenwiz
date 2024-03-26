@@ -5,7 +5,7 @@ import "@/components/assets/css/style.css";
 
 
 export default function RecentUsers() {
- return <div className="col-lg-6">
+ return <div className="w-full p-0 m-0">
  <div className="card card-full-height shadow-md	">
      <div className="card-innr">
          <div className="card-head has-aside pb-0">

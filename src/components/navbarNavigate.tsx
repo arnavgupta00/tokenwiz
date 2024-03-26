@@ -16,27 +16,27 @@ export default function NavbarNav() {
           <div className="navbar-innr">
             <ul className="navbar-menu">
               <li>
-                <a href="index.html">
+                <a href="/">
                   <em className="ikon ikon-dashboard"></em> Dashboard
                 </a>
               </li>
               <li>
-                <a href="buy-token.html">
+                <a href="purchase">
                   <em className="ikon ikon-coins"></em> Buy Tokens
                 </a>
               </li>
               <li>
-                <a href="ico-distribution.html">
+                <a href="ico-distribution">
                   <em className="ikon ikon-distribution"></em> ICO Distribution
                 </a>
               </li>
               <li>
-                <a href="transactions.html">
+                <a href="transactions">
                   <em className="ikon ikon-transactions"></em> Transactions
                 </a>
               </li>
               <li>
-                <a href="profile.html">
+                <a href="profile">
                   <em className="ikon ikon-user"></em> Profile
                 </a>
               </li>
@@ -50,138 +50,25 @@ export default function NavbarNav() {
                       Dashboards
                     </a>
                     <ul className="navbar-dropdown">
+                      
                       <li>
-                        <a href="index.html">Dashboard v1</a>
-                      </li>
-                      <li>
-                        <a href="index-v2.html">
-                          Dashboard v2{" "}
+                        <a href="/">
+                          User Dashboard {" "}
                           <span className="badge badge-warning">New</span>
                         </a>
                       </li>
                     </ul>
                   </li>
-                  <li className="has-dropdown">
-                    <a className="drop-toggle" href="#">
-                      UI Elements
-                    </a>
-                    <ul className="navbar-dropdown">
-                      <li>
-                        <a href="form-elements.html">Form Elements</a>
-                      </li>
-                      <li>
-                        <a href="form-layout.html">Form Layout</a>
-                      </li>
-                      <li>
-                        <a href="form-validation.html">
-                          Form Validation{" "}
-                          <span className="badge badge-danger">Hot</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="form-wizard.html">
-                          Form Wizard{" "}
-                          <span className="badge badge-danger">Hot</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="buttons.html">Button</a>
-                      </li>
-                      <li>
-                        <a href="badges.html">Badge</a>
-                      </li>
-                      <li>
-                        <a href="cards.html">Cards</a>
-                      </li>
-                      <li>
-                        <a href="tabs.html">Tabs</a>
-                      </li>
-                      <li>
-                        <a href="accordions.html">Accordions</a>
-                      </li>
-                      <li>
-                        <a href="modals.html">Modals</a>
-                      </li>
-                      <li>
-                        <a href="alerts.html">Alerts</a>
-                      </li>
-                      <li>
-                        <a href="alert-toastr.html">Toastr Alerts</a>
-                      </li>
-                      <li>
-                        <a href="alert-sweat.html">
-                          Sweat Alerts{" "}
-                          <span className="badge badge-danger">Hot</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li className="has-dropdown">
-                    <a className="drop-toggle" href="#">
-                      Misc Pages
-                    </a>
-                    <ul className="navbar-dropdown">
-                      <li>
-                        <a href="404-error.html">404 Error</a>
-                      </li>
-                      <li>
-                        <a href="sign-in.html">Sign In / Login</a>
-                      </li>
-                      <li>
-                        <a href="sign-up.html">Sign Up / Registration</a>
-                      </li>
-                      <li>
-                        <a href="signup-success.html">Signup Success</a>
-                      </li>
-                      <li>
-                        <a href="email-verified.html">Email Verified</a>
-                      </li>
-                      <li>
-                        <a href="forgot.html">Forgot Password</a>
-                      </li>
-                      <li>
-                        <a href="faq-page.html">Faq Page</a>
-                      </li>
-                      <li>
-                        <a href="regular-page.html">Regular Page - v1</a>
-                      </li>
-                      <li>
-                        <a href="regular-page-v2.html">Regular Page - v2</a>
-                      </li>
-                      <li>
-                        <a href="timeline.html">
-                          Timeline{" "}
-                          <span className="badge badge-warning">New</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="thank-you.html">Thank You</a>
-                      </li>
-                      <li>
-                        <a href="_blank.html">Blank Page</a>
-                      </li>
-                    </ul>
-                  </li>
+                  
                   <li className="has-dropdown">
                     <a className="drop-toggle" href="#">
                       KYC / AML
                     </a>
                     <ul className="navbar-dropdown">
                       <li>
-                        <a href="kyc-application.html">KYC Default</a>
+                        <a href="kyc-application">KYC Default</a>
                       </li>
-                      <li>
-                        <a href="kyc-form.html">KYC Form</a>
-                      </li>
-                      <li>
-                        <a href="kyc-thank-you.html">KYC Thank You</a>
-                      </li>
-                      <li>
-                        <a href="kyc-list.html">KYC Lists - Admin</a>
-                      </li>
-                      <li>
-                        <a href="kyc-details.html">KYC Details - Admin</a>
-                      </li>
+                      
                     </ul>
                   </li>
                   <li className="has-dropdown">
@@ -190,26 +77,9 @@ export default function NavbarNav() {
                     </a>
                     <ul className="navbar-dropdown">
                       <li>
-                        <a href="profile.html">Profile Page</a>
+                        <a href="profile">Profile Page</a>
                       </li>
-                      <li>
-                        <a href="activity.html">
-                          User Activity{" "}
-                          <span className="badge badge-warning">New</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="user-list-sidebar.html">
-                          User List - Sidebar{" "}
-                          <span className="badge badge-warning">New</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="user-list.html">User List - Admin</a>
-                      </li>
-                      <li>
-                        <a href="user-details.html">User Details - Admin</a>
-                      </li>
+                      
                     </ul>
                   </li>
                   <li className="has-dropdown">
@@ -218,15 +88,15 @@ export default function NavbarNav() {
                     </a>
                     <ul className="navbar-dropdown">
                       <li>
-                        <a href="transactions.html">Transactions - User</a>
+                        <a href="transactions">Transactions - User</a>
                       </li>
                       <li>
-                        <a href="admin-transactions.html">
-                          Transactions - Admin
+                        <a href="admin-transactions">
+                          Transactions - Admin <span className="badge badge-warning">Not yet Made</span>
                         </a>
                       </li>
                       <li>
-                        <a href="transaction-details.html">
+                        <a href="transactions/1">
                           Transaction Details
                         </a>
                       </li>
@@ -238,32 +108,25 @@ export default function NavbarNav() {
                     </a>
                     <ul className="navbar-dropdown">
                       <li>
-                        <a href="buy-token.html">Buy Token - Modern</a>
+                        <a href="purchase">Buy Token </a>
                       </li>
-                      <li>
-                        <a href="buy-token-s2.html">Buy Token - Simple</a>
-                      </li>
+                      
                     </ul>
                   </li>
-                  <li>
-                    <a href="chat.html">
+                  {/* <li>
+                    <a href="chat">
                       Chat App <span className="badge badge-warning">New</span>{" "}
                       <span className="badge badge-danger">Hot</span>
                     </a>
-                  </li>
-                  <li>
-                    <a href="email-templates.html">
-                      Email Templates{" "}
-                      <span className="badge badge-success">Free</span>
-                    </a>
-                  </li>
+                  </li> */}
+                  
                 </ul>
               </li>
             </ul>
             <ul className="navbar-btns">
               <li>
                 <a
-                  href="kyc-application.html"
+                  href="kyc-application"
                   className="btn btn-sm btn-outline btn-light"
                 >
                   <em className="text-primary ti ti-files"></em>

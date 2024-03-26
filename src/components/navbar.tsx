@@ -64,7 +64,7 @@ export default function Nav() {
                   </DropdownItem>
                   <DropdownItem as="ul" className="user-links">
                     <li>
-                      <a href="profile.html">
+                      <a href="profile">
                         <i className="ti ti-id-badge"></i>My Profile
                       </a>
                     </li>
@@ -74,14 +74,14 @@ export default function Nav() {
                       </a>
                     </li>
                     <li>
-                      <a href="activity.html">
+                      <a href="activity">
                         <i className="ti ti-eye"></i>Activity
                       </a>
                     </li>
                   </DropdownItem>
                   <DropdownItem as="ul" className="user-links bg-light">
                     <li>
-                      <a href="sign-in.html">
+                      <a href="sign-in">
                         <i className="ti ti-power-off"></i>Logout
                       </a>
                     </li>

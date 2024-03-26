@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Nav from "@/components/navbar";
 import NavbarNav from "@/components/navbarNavigate";
+import Footer from "@/components/footer";
 interface Transaction {
   id: number;
   amountTWZ: number;
@@ -27,85 +28,580 @@ export default function Page() {
 
   return (
     <div
-      className="flex flex-col justify-center items-center gap-8 bg-gray-300 pb-16"
+      className="flex flex-col justify-center items-center gap-8 bg-gray-300 "
       style={{ overflowX: "hidden" }}
     >
-      <div>
+      <div className="pb-8">
         <Nav></Nav>
         <NavbarNav></NavbarNav>
       </div>
-      <div className="w-full p-8">
-        <div className="container mx-auto h-full bg-gray-100 w-full p-8  rounded-xl flex flex-col gap-8 justify-between ">
-          <div>
-            <h1 className="text-2xl font-bold mb-4 text-blue-500">
-              User Transactions
-            </h1>
-
-            <table className="w-full text-sm text-left text-gray-500 rounded-xl ">
-              <thead className="text-gray-700 uppercase bg-gray-50">
-                <tr>
-                  <th scope="col" className="px-6 py-4">
-                    Tranx No
+      <div className="w-full pl-28 pr-28">
+        <div className="card content-area">
+          <div className="card-innr">
+            <div className="card-head">
+              <h4 className="card-title">User Transactions</h4>
+            </div>
+            <table className="data-table dt-init user-tnx">
+              <thead>
+                <tr className="data-item data-head">
+                  <th className="data-col dt-tnxno">Tranx NO</th>
+                  <th className="data-col dt-token">Tokens</th>
+                  <th className="data-col dt-amount">Amount</th>
+                  <th className="data-col dt-usd-amount">USD Amount</th>
+                  <th className="data-col dt-account">From</th>
+                  <th className="data-col dt-type">
+                    <div className="dt-type-text">Type</div>
                   </th>
-                  <th scope="col" className="px-6 py-4">
-                    Tokens
-                  </th>
-
-                  <th scope="col" className="px-6 py-4">
-                    USD Amount
-                  </th>
-                  <th scope="col" className="px-6 py-4">
-                    From
-                  </th>
-                  <th scope="col" className="px-6 py-4">
-                    Type
-                  </th>
-                  <th scope="col" className="px-6 py-4">
-                    Status
-                  </th>
-                  <th scope="col" className="px-6 py-4">
-                    Info
-                  </th>
+                  <th className="data-col"></th>
                 </tr>
               </thead>
               <tbody>
-                {transactions.map((transaction, index) => {
-                  if (index < 8) {
-                    return (
-                        <tr key={index} className="bg-white border-b">
-                          <th
-                            scope="row"
-                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-                          >
-                            {transaction.id}
-                          </th>
-                          <td className="px-6 py-4">{transaction.amountTWZ}</td>
-                          <td className="px-6 py-4">
-                            {transaction.amountUSD} USD
-                          </td>
-                          <td className="px-6 py-4">{transaction.form}</td>
-                          <td className="px-6 py-4">{transaction.type}</td>
-                          <td className="px-6 py-4">{transaction.status}</td>
-                          <td className="px-6 py-4 text-blue-500"><Link href={`transactions/${index}`}>Details</Link></td>
-                          
-                        </tr>
-                    );
-                  }
-                })}
+                <tr className="data-item">
+                  <td className="data-col dt-tnxno">
+                    <div className="d-flex align-items-center">
+                      <div className="data-state data-state-pending">
+                        <span className="d-none">Pending</span>
+                      </div>
+                      <div className="fake-class">
+                        <span className="lead tnx-id">TNX1002</span>
+                        <span className="sub sub-date">2018-08-24 10:45PM</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="data-col dt-token">
+                    <span className="lead token-amount">18,750</span>
+                    <span className="sub sub-symbol">TWZ</span>
+                  </td>
+                  <td className="data-col dt-amount">
+                    <span className="lead amount-pay">50.00</span>
+                    <span className="sub sub-symbol">
+                      ETH{" "}
+                      <em
+                        className="fas fa-info-circle"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="1 ETH = 1250 TWZ"
+                      ></em>
+                    </span>
+                  </td>
+                  <td className="data-col dt-usd-amount">
+                    <span className="lead amount-pay">245.52</span>
+                    <span className="sub sub-symbol">
+                      USD{" "}
+                      <em
+                        className="fas fa-info-circle"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="1 ETH = 350.54 USD"
+                      ></em>
+                    </span>
+                  </td>
+                  <td className="data-col dt-account">
+                    <span className="lead user-info">1F1T....4XQX</span>
+                    <span className="sub sub-date">08 Jul, 18 10:20PM</span>
+                  </td>
+                  <td className="data-col dt-type">
+                    <span className="dt-type-md badge badge-outline badge-success badge-md">
+                      Purchase
+                    </span>
+                    <span className="dt-type-sm badge badge-sq badge-outline badge-success badge-md">
+                      P
+                    </span>
+                  </td>
+                  <td className="data-col text-right">
+                    <div className="relative d-inline-block d-md-none">
+                      <a
+                        href="#"
+                        className="btn btn-light-alt btn-xs btn-icon toggle-tigger"
+                      >
+                        <em className="ti ti-more-alt"></em>
+                      </a>
+                      <div className="toggle-class dropdown-content dropdown-content-center-left pd-2x">
+                        <ul className="data-action-list">
+                          <li>
+                            <a
+                              href="#"
+                              className="btn btn-auto btn-primary btn-xs"
+                            >
+                              <span>
+                                Pay{" "}
+                                <span className="d-none d-xl-inline-block">
+                                  Now
+                                </span>
+                              </span>
+                              <em className="ti ti-wallet"></em>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="#"
+                              className="btn btn-danger-alt btn-xs btn-icon"
+                            >
+                              <em className="ti ti-trash"></em>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <ul className="data-action-list d-none d-md-inline-flex">
+                      <li>
+                        <a href="#" className="btn btn-auto btn-primary btn-xs">
+                          <span>
+                            Pay{" "}
+                            <span className="d-none d-xl-inline-block">
+                              Now
+                            </span>
+                          </span>
+                          <em className="ti ti-wallet"></em>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          className="btn btn-danger-alt btn-xs btn-icon"
+                        >
+                          <em className="ti ti-trash"></em>
+                        </a>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr className="data-item">
+                  <td className="data-col dt-tnxno">
+                    <div className="d-flex align-items-center">
+                      <div className="data-state data-state-approved">
+                        <span className="d-none">Approved</span>
+                      </div>
+                      <div className="fake-class">
+                        <span className="lead tnx-id">TNX1002</span>
+                        <span className="sub sub-date">2018-08-24 10:45PM</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="data-col dt-token">
+                    <span className="lead token-amount">18,750</span>
+                    <span className="sub sub-symbol">TWZ</span>
+                  </td>
+                  <td className="data-col dt-amount">
+                    <span className="lead amount-pay">50.00</span>
+                    <span className="sub sub-symbol">
+                      ETH{" "}
+                      <em
+                        className="fas fa-info-circle"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="1 ETH = 1250 TWZ"
+                      ></em>
+                    </span>
+                  </td>
+                  <td className="data-col dt-usd-amount">
+                    <span className="lead amount-pay">245.52</span>
+                    <span className="sub sub-symbol">
+                      USD{" "}
+                      <em
+                        className="fas fa-info-circle"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="1 ETH = 350.54 USD"
+                      ></em>
+                    </span>
+                  </td>
+                  <td className="data-col dt-account">
+                    <span className="lead user-info">1F1T....4XQX</span>
+                    <span className="sub sub-date">08 Jul, 18 10:20PM</span>
+                  </td>
+                  <td className="data-col dt-type">
+                    <span className="dt-type-md badge badge-outline badge-success badge-md">
+                      Purchase
+                    </span>
+                    <span className="dt-type-sm badge badge-sq badge-outline badge-success badge-md">
+                      P
+                    </span>
+                  </td>
+                  <td className="data-col text-right">
+                    <a
+                      href="#"
+                      data-toggle="modal"
+                      data-target="#transaction-details"
+                      className="btn btn-light-alt btn-xs btn-icon"
+                    >
+                      <em className="ti ti-eye"></em>
+                    </a>
+                  </td>
+                </tr>
+                <tr className="data-item">
+                  <td className="data-col dt-tnxno">
+                    <div className="d-flex align-items-center">
+                      <div className="data-state data-state-canceled">
+                        <span className="d-none">Canceled</span>
+                      </div>
+                      <div className="fake-class">
+                        <span className="lead tnx-id">TNX1002</span>
+                        <span className="sub sub-date">2018-08-24 10:45PM</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="data-col dt-token">
+                    <span className="lead token-amount">18,750</span>
+                    <span className="sub sub-symbol">TWZ</span>
+                  </td>
+                  <td className="data-col dt-amount">
+                    <span className="lead amount-pay">50.00</span>
+                    <span className="sub sub-symbol">
+                      ETH{" "}
+                      <em
+                        className="fas fa-info-circle"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="1 ETH = 1250 TWZ"
+                      ></em>
+                    </span>
+                  </td>
+                  <td className="data-col dt-usd-amount">
+                    <span className="lead amount-pay">245.52</span>
+                    <span className="sub sub-symbol">
+                      USD{" "}
+                      <em
+                        className="fas fa-info-circle"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="1 ETH = 350.54 USD"
+                      ></em>
+                    </span>
+                  </td>
+                  <td className="data-col dt-account">
+                    <span className="lead user-info">1F1T....4XQX</span>
+                    <span className="sub sub-date">08 Jul, 18 10:20PM</span>
+                  </td>
+                  <td className="data-col dt-type">
+                    <span className="dt-type-md badge badge-outline badge-success badge-md">
+                      Purchase
+                    </span>
+                    <span className="dt-type-sm badge badge-sq badge-outline badge-success badge-md">
+                      P
+                    </span>
+                  </td>
+                  <td className="data-col text-right">
+                    <a
+                      href="transaction-details.html"
+                      className="btn btn-light-alt btn-xs btn-icon"
+                    >
+                      <em className="ti ti-eye"></em>
+                    </a>
+                  </td>
+                </tr>
+                <tr className="data-item">
+                  <td className="data-col dt-tnxno">
+                    <div className="d-flex align-items-center">
+                      <div className="data-state data-state-progress">
+                        <span className="d-none">Progress</span>
+                      </div>
+                      <div className="fake-class">
+                        <span className="lead tnx-id">TNX1002</span>
+                        <span className="sub sub-date">2018-08-24 10:45PM</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="data-col dt-token">
+                    <span className="lead token-amount">18,750</span>
+                    <span className="sub sub-symbol">TWZ</span>
+                  </td>
+                  <td className="data-col dt-amount">
+                    <span className="lead amount-pay">50.00</span>
+                    <span className="sub sub-symbol">
+                      ETH{" "}
+                      <em
+                        className="fas fa-info-circle"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="1 ETH = 1250 TWZ"
+                      ></em>
+                    </span>
+                  </td>
+                  <td className="data-col dt-usd-amount">
+                    <span className="lead amount-pay">245.52</span>
+                    <span className="sub sub-symbol">
+                      USD{" "}
+                      <em
+                        className="fas fa-info-circle"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="1 ETH = 350.54 USD"
+                      ></em>
+                    </span>
+                  </td>
+                  <td className="data-col dt-account">
+                    <span className="lead user-info">1F1T....4XQX</span>
+                    <span className="sub sub-date">08 Jul, 18 10:20PM</span>
+                  </td>
+                  <td className="data-col dt-type">
+                    <span className="dt-type-md badge badge-outline badge-success badge-md">
+                      Purchase
+                    </span>
+                    <span className="dt-type-sm badge badge-sq badge-outline badge-success badge-md">
+                      P
+                    </span>
+                  </td>
+                  <td className="data-col text-right">
+                    <a
+                      href="transaction-details.html"
+                      className="btn btn-light-alt btn-xs btn-icon"
+                    >
+                      <em className="ti ti-eye"></em>
+                    </a>
+                  </td>
+                </tr>
+                <tr className="data-item">
+                  <td className="data-col dt-tnxno">
+                    <div className="d-flex align-items-center">
+                      <div className="data-state data-state-approved">
+                        <span className="d-none">Approved</span>
+                      </div>
+                      <div className="fake-class">
+                        <span className="lead tnx-id">TNX1002</span>
+                        <span className="sub sub-date">2018-08-24 10:45PM</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="data-col dt-token">
+                    <span className="lead token-amount">1,050</span>
+                    <span className="sub sub-symbol">TWZ</span>
+                  </td>
+                  <td className="data-col dt-amount">
+                    <span className="lead amount-pay">0.85</span>
+                    <span className="sub sub-symbol">
+                      ETH{" "}
+                      <em
+                        className="fas fa-info-circle"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="1 ETH = 1250 TWZ"
+                      ></em>
+                    </span>
+                  </td>
+                  <td className="data-col dt-usd-amount">
+                    <span className="lead amount-pay">2.54</span>
+                    <span className="sub sub-symbol">
+                      USD{" "}
+                      <em
+                        className="fas fa-info-circle"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="1 ETH = 350.54 USD"
+                      ></em>
+                    </span>
+                  </td>
+                  <td className="data-col dt-account">
+                    <span className="lead user-info">Bounty Bonus</span>
+                    <span className="sub sub-date">Campaign Name</span>
+                  </td>
+                  <td className="data-col dt-type">
+                    <span className="dt-type-md badge badge-outline badge-info badge-md">
+                      Bonus
+                    </span>
+                    <span className="dt-type-sm badge badge-sq badge-outline badge-info badge-md">
+                      B
+                    </span>
+                  </td>
+                  <td className="data-col text-right">
+                    <a
+                      href="transaction-details.html"
+                      className="btn btn-light-alt btn-xs btn-icon"
+                    >
+                      <em className="ti ti-eye"></em>
+                    </a>
+                  </td>
+                </tr>
+                <tr className="data-item">
+                  <td className="data-col dt-tnxno">
+                    <div className="d-flex align-items-center">
+                      <div className="data-state data-state-progress">
+                        <span className="d-none">Progress</span>
+                      </div>
+                      <div className="fake-class">
+                        <span className="lead tnx-id">TNX1002</span>
+                        <span className="sub sub-date">2018-08-24 10:45PM</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="data-col dt-token">
+                    <span className="lead token-amount">18,750</span>
+                    <span className="sub sub-symbol">TWZ</span>
+                  </td>
+                  <td className="data-col dt-amount">
+                    <span className="lead amount-pay">50.00</span>
+                    <span className="sub sub-symbol">
+                      ETH{" "}
+                      <em
+                        className="fas fa-info-circle"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="1 ETH = 1250 TWZ"
+                      ></em>
+                    </span>
+                  </td>
+                  <td className="data-col dt-usd-amount">
+                    <span className="lead amount-pay">245.52</span>
+                    <span className="sub sub-symbol">
+                      USD{" "}
+                      <em
+                        className="fas fa-info-circle"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="1 ETH = 350.54 USD"
+                      ></em>
+                    </span>
+                  </td>
+                  <td className="data-col dt-account">
+                    <span className="lead user-info">1F1T....4XQX</span>
+                    <span className="sub sub-date">08 Jul, 18 10:20PM</span>
+                  </td>
+                  <td className="data-col dt-type">
+                    <span className="dt-type-md badge badge-outline badge-success badge-md">
+                      Purchase
+                    </span>
+                    <span className="dt-type-sm badge badge-sq badge-outline badge-success badge-md">
+                      P
+                    </span>
+                  </td>
+                  <td className="data-col text-right">
+                    <a
+                      href="transaction-details.html"
+                      className="btn btn-light-alt btn-xs btn-icon"
+                    >
+                      <em className="ti ti-eye"></em>
+                    </a>
+                  </td>
+                </tr>
+                <tr className="data-item">
+                  <td className="data-col dt-tnxno">
+                    <div className="d-flex align-items-center">
+                      <div className="data-state data-state-canceled">
+                        <span className="d-none">Canceled</span>
+                      </div>
+                      <div className="fake-class">
+                        <span className="lead tnx-id">TNX1002</span>
+                        <span className="sub sub-date">2018-08-24 10:45PM</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="data-col dt-token">
+                    <span className="lead token-amount">18,750</span>
+                    <span className="sub sub-symbol">TWZ</span>
+                  </td>
+                  <td className="data-col dt-amount">
+                    <span className="lead amount-pay">50.00</span>
+                    <span className="sub sub-symbol">
+                      ETH{" "}
+                      <em
+                        className="fas fa-info-circle"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="1 ETH = 1250 TWZ"
+                      ></em>
+                    </span>
+                  </td>
+                  <td className="data-col dt-usd-amount">
+                    <span className="lead amount-pay">245.52</span>
+                    <span className="sub sub-symbol">
+                      USD{" "}
+                      <em
+                        className="fas fa-info-circle"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="1 ETH = 350.54 USD"
+                      ></em>
+                    </span>
+                  </td>
+                  <td className="data-col dt-account">
+                    <span className="lead user-info">1F1T....4XQX</span>
+                    <span className="sub sub-date">08 Jul, 18 10:20PM</span>
+                  </td>
+                  <td className="data-col dt-type">
+                    <span className="dt-type-md badge badge-outline badge-success badge-md">
+                      Purchase
+                    </span>
+                    <span className="dt-type-sm badge badge-sq badge-outline badge-success badge-md">
+                      P
+                    </span>
+                  </td>
+                  <td className="data-col text-right">
+                    <a
+                      href="transaction-details.html"
+                      className="btn btn-light-alt btn-xs btn-icon"
+                    >
+                      <em className="ti ti-eye"></em>
+                    </a>
+                  </td>
+                </tr>
+                <tr className="data-item">
+                  <td className="data-col dt-tnxno">
+                    <div className="d-flex align-items-center">
+                      <div className="data-state data-state-progress">
+                        <span className="d-none">Progress</span>
+                      </div>
+                      <div className="fake-class">
+                        <span className="lead tnx-id">TNX1002</span>
+                        <span className="sub sub-date">2018-08-24 10:45PM</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="data-col dt-token">
+                    <span className="lead token-amount">18,750</span>
+                    <span className="sub sub-symbol">TWZ</span>
+                  </td>
+                  <td className="data-col dt-amount">
+                    <span className="lead amount-pay">50.00</span>
+                    <span className="sub sub-symbol">
+                      ETH{" "}
+                      <em
+                        className="fas fa-info-circle"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="1 ETH = 1250 TWZ"
+                      ></em>
+                    </span>
+                  </td>
+                  <td className="data-col dt-usd-amount">
+                    <span className="lead amount-pay">245.52</span>
+                    <span className="sub sub-symbol">
+                      USD{" "}
+                      <em
+                        className="fas fa-info-circle"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="1 ETH = 350.54 USD"
+                      ></em>
+                    </span>
+                  </td>
+                  <td className="data-col dt-account">
+                    <span className="lead user-info">1F1T....4XQX</span>
+                    <span className="sub sub-date">08 Jul, 18 10:20PM</span>
+                  </td>
+                  <td className="data-col dt-type">
+                    <span className="dt-type-md badge badge-outline badge-success badge-md">
+                      Purchase
+                    </span>
+                    <span className="dt-type-sm badge badge-sq badge-outline badge-success badge-md">
+                      P
+                    </span>
+                  </td>
+                  <td className="data-col text-right">
+                    <a
+                      href="transaction-details.html"
+                      className="btn btn-light-alt btn-xs btn-icon"
+                    >
+                      <em className="ti ti-eye"></em>
+                    </a>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
-
-          <div className="flex justify-between items-center mt-4">
-            <button className="bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded">
-              Prev
-            </button>
-            <span className="text-gray-500">1-5 of 8</span>
-            <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded">
-              Next
-            </button>
-          </div>
         </div>
+      </div>
+      <div className="w-full p-0">
+        <Footer></Footer>
       </div>
     </div>
   );

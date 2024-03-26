@@ -5,7 +5,7 @@ import "@/components/assets/css/style.css";
 
 export default function BannerCard() {
   return (
-    <div className="col-lg-8">
+    <div className="w-full p-0 m-0">
       <div className="token-information card card-full-height shadow-md	">
         <div className="row no-gutters height-100">
           <div className="col-md-6 text-center">
