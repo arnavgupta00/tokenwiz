@@ -43,7 +43,7 @@ export default function Page() {
                                 </div>
                                 <span className="status-text large text-dark">You have completed the process of KYC</span>
                                 <p className="px-md-5">We are still waiting for your identity verification. Once our team verified your indentity, you will be notified by email. You can also check your KYC  compliance status from your profile page.</p>
-                                <a href="profile.html" className="btn btn-primary">Back to Profile</a>
+                                <a href="/profile" className="btn btn-primary">Back to Profile</a>
                             </div>
                         </div>
                     </div>
