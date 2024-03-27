@@ -521,7 +521,7 @@ export default function Page() {
                       </label>
                     </div>
                     <div className="gaps-1x"></div>
-                    <a href="kyc-thank-you.html" className="btn btn-primary">
+                    <a href="/kyc/kyc-thank-you" className="btn btn-primary">
                       Process for Verify
                     </a>
                   </div>
