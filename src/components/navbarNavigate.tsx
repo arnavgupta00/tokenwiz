@@ -80,7 +80,7 @@ export default function NavbarNav() {
                   </a>
                   <ul className="navbar-dropdown">
                     <li>
-                      <a href="profile">Profile Page</a>
+                      <a href="/profile">Profile Page</a>
                     </li>
                   </ul>
                 </li>
@@ -90,10 +90,10 @@ export default function NavbarNav() {
                   </a>
                   <ul className="navbar-dropdown">
                     <li>
-                      <a href="transactions">Transactions - User</a>
+                      <a href="/transactions">Transactions - User</a>
                     </li>
                     <li>
-                      <a href="admin-transactions">
+                      <a href="/admin-transactions">
                         Transactions - Admin{" "}
                         <span className="badge badge-warning">
                           Not yet Made
@@ -101,7 +101,7 @@ export default function NavbarNav() {
                       </a>
                     </li>
                     <li>
-                      <a href="transactions/1">Transaction Details</a>
+                      <a href="/transactions/1">Transaction Details</a>
                     </li>
                   </ul>
                 </li>
@@ -111,7 +111,7 @@ export default function NavbarNav() {
                   </a>
                   <ul className="navbar-dropdown">
                     <li>
-                      <a href="purchase">Buy Token </a>
+                      <a href="/purchase">Buy Token </a>
                     </li>
                   </ul>
                 </li>
