@@ -9,6 +9,14 @@ import { tokenPerUSD } from "@/components/tokenConversion";
 import BannerCard from "@/components/bannerCard";
 import TokenSales from "@/components/tokenSales";
 import Footer from "@/components/footer";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Transaction Details",
+  description: "Token Wiz Transaction Details Page",
+};
+
+
 export default function Page() {
   const tokenBalance = 12000;
 

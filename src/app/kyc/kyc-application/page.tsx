@@ -8,6 +8,13 @@ import RecentUsers from "@/components/recentUsers";
 import { tokenPerUSD } from "@/components/tokenConversion";
 import BannerCard from "@/components/bannerCard";
 import Footer from "@/components/footer";
+
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "KYC / ID verification",
+    description: "Token Wiz ID verification Page",
+  };
 export default function Page() {
   const tokenBalance = 12000;
 

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Nav from "@/components/navbar";
 import NavbarNav from "@/components/navbarNavigate";
 import Footer from "@/components/footer";
+import { Metadata } from "next";
 interface Transaction {
   id: number;
   amountTWZ: number;
@@ -11,6 +12,10 @@ interface Transaction {
   date: string;
   type: "Purchase" | "Bonus";
 }
+export const metadata: Metadata = {
+  title: "Buy Token's",
+  description: "Token Wiz Buy Token's Page",
+};
 
 export default function Page() {
   const transactions: Transaction[] = [];

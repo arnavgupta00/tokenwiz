@@ -2,6 +2,11 @@ import Link from "next/link";
 import Nav from "@/components/navbar";
 import NavbarNav from "@/components/navbarNavigate";
 import Footer from "@/components/footer";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+    title: "User Transactions",
+    description: "Token Wiz Transactions Page",
+  };
 
 interface Transaction {
   id: number;

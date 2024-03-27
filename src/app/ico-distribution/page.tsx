@@ -3,6 +3,14 @@ import NavbarNav from "@/components/navbarNavigate";
 import BalanceCard from "@/components/BalanceCard";
 import TokenSales from "@/components/tokenSales";
 import Footer from "@/components/footer";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Ico Distribution",
+  description: "Initial Coin Offering Distribution Page",
+};
+
+
 export default function Page() {
   const tokenBalance = 12000;
 

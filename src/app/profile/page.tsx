@@ -8,6 +8,13 @@ import ProfileCard from "@/components/profileCard";
 import ReferralCard from "@/components/referralCard";
 import TokenSales from "@/components/tokenSales";
 import TwoFactor from "@/components/twoFactorCard";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Profile Page",
+  description: "Token Wiz Profile Page Page",
+};
+
 
 export default function Page() {
   const countryOptions = [
