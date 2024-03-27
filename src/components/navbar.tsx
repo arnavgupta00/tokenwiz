@@ -32,7 +32,7 @@ export default function Nav() {
                 </a>
               </li>
             </ul>
-            <a className="topbar-logo" href="./">
+            <a className="topbar-logo" href="/">
               <img
                 src={imageLogo.src}
                 srcSet={imageLogo.src + " 2x"}
@@ -64,17 +64,17 @@ export default function Nav() {
                   </DropdownItem>
                   <DropdownItem as="ul" className="user-links">
                     <li>
-                      <a href="profile">
+                      <a href="/profile">
                         <i className="ti ti-id-badge"></i>My Profile
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="/profile">
                         <i className="ti ti-infinite"></i>Referral
                       </a>
                     </li>
                     <li>
-                      <a href="activity">
+                      <a href="/">
                         <i className="ti ti-eye"></i>Activity
                       </a>
                     </li>

@@ -16,7 +16,7 @@ export default function IdVerification() {
         <p className="lead text-light pdb-0-5x">
           You have not submitted your KYC application to verify your indentity.
         </p>
-        <a href="#" className="btn btn-primary btn-block">
+        <a href="/kyc/kyc-application" className="btn btn-primary btn-block">
           Click to Proceed
         </a>
         <h6 className="kyc-alert text-danger">

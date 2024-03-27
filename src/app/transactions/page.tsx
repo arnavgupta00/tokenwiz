@@ -220,9 +220,8 @@ export default function Page() {
                   </td>
                   <td className="data-col text-right">
                     <a
-                      href="#"
-                      data-toggle="modal"
-                      data-target="#transaction-details"
+                      href="/transactions/1"
+                      
                       className="btn btn-light-alt btn-xs btn-icon"
                     >
                       <em className="ti ti-eye"></em>
@@ -283,7 +282,7 @@ export default function Page() {
                   </td>
                   <td className="data-col text-right">
                     <a
-                      href="transaction-details.html"
+                      href="/transactions/1"
                       className="btn btn-light-alt btn-xs btn-icon"
                     >
                       <em className="ti ti-eye"></em>
@@ -344,7 +343,7 @@ export default function Page() {
                   </td>
                   <td className="data-col text-right">
                     <a
-                      href="transaction-details.html"
+                      href="/transactions/1"
                       className="btn btn-light-alt btn-xs btn-icon"
                     >
                       <em className="ti ti-eye"></em>
@@ -405,7 +404,7 @@ export default function Page() {
                   </td>
                   <td className="data-col text-right">
                     <a
-                      href="transaction-details.html"
+                      href="/transactions/1"
                       className="btn btn-light-alt btn-xs btn-icon"
                     >
                       <em className="ti ti-eye"></em>
@@ -466,7 +465,7 @@ export default function Page() {
                   </td>
                   <td className="data-col text-right">
                     <a
-                      href="transaction-details.html"
+                      href="/transactions/1"
                       className="btn btn-light-alt btn-xs btn-icon"
                     >
                       <em className="ti ti-eye"></em>
@@ -527,7 +526,7 @@ export default function Page() {
                   </td>
                   <td className="data-col text-right">
                     <a
-                      href="transaction-details.html"
+                      href="/transactions/1"
                       className="btn btn-light-alt btn-xs btn-icon"
                     >
                       <em className="ti ti-eye"></em>
@@ -588,7 +587,7 @@ export default function Page() {
                   </td>
                   <td className="data-col text-right">
                     <a
-                      href="transaction-details.html"
+                      href="/transactions/1"
                       className="btn btn-light-alt btn-xs btn-icon"
                     >
                       <em className="ti ti-eye"></em>

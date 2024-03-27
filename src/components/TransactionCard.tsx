@@ -35,7 +35,7 @@ export default function TransactionCard() {
           <div className="card-head has-aside">
             <h4 className="card-title">Transaction</h4>
             <div className="card-opt">
-              <a href="transactions.html" className="link ucap">
+              <a href="/transactions" className="link ucap">
                 View ALL <em className="fas fa-angle-right ml-2"></em>
               </a>
             </div>
