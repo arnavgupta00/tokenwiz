@@ -9,13 +9,19 @@ import { tokenPerUSD } from "@/components/tokenConversion";
 import BannerCard from "@/components/bannerCard";
 import Footer from "@/components/footer";
 import { Metadata } from "next";
+
+
+
 export const metadata: Metadata = {
   title: "User Dashboard",
   description: "Token Wiz User Dashboard Page",
 };
 
-export default function Page() {
+export default async function Page() {
   const tokenBalance = 12000;
+
+
+  
 
   return (
     <div
