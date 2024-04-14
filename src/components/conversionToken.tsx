@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { tokenPerUSD } from "./tokenConversion";
+import { tokenPerMode } from "./tokenConversion";
 
 export default function ConversionToken() {
     const [amount, setAmount] = useState(1);
@@ -28,7 +28,7 @@ export default function ConversionToken() {
                 </select>
                 <span className="ml-2 text-gray-500">=</span>
                 <span className="ml-2 font-bold text-blue-500">
-                    {amount * tokenPerUSD} TWZ
+                    {amount * tokenPerMode.USD} TWZ
                 </span>
             </div>
 

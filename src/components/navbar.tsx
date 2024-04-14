@@ -34,7 +34,6 @@ export default function Nav() {
   useEffect(() => {
     async function fetchData() {
       const data = await getUserData();
-      console.log(data);
       setData(data);
       if (!data.authenticated) {
         setShowMenuSignIn(true);
