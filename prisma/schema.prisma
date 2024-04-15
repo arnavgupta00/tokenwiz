@@ -27,15 +27,16 @@ model User {
 }
 
 model Transaction {
-  id          Int      @id @default(autoincrement())
-  amountUSD   Float
-  sessionID   String   @unique
-  Tokens      Float
-  Status      String
-  description String?
-  userEmail   String
-  user        User     @relation(fields: [userEmail], references: [email]) // Modify relation
-  createdAt   DateTime @default(now())
+  id            Int      @id @default(autoincrement())
+  amountUSD     Float
+  sessionID     String   @unique
+  Tokens        Float
+  Status        String
+  description   String?
+  modeOfPayment String?
+  userEmail     String
+  user          User     @relation(fields: [userEmail], references: [email]) // Modify relation
+  createdAt     DateTime @default(now())
 }
 
 model Task {
