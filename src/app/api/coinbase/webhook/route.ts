@@ -1,7 +1,7 @@
 import { Webhook } from 'coinbase-commerce-node';
 import { NextRequest, NextResponse } from 'next/server';
 
-export default async function handler(req:any,) {
+export default async function POST(req:any,) {
   const data = await req.body;
   const secret = process.env.COINBASE_SECRET||"";
 
