@@ -3,12 +3,23 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: any) {
   const data = await req.body;
+  const body = await req.json();
+
   const secret = process.env.COINBASE_SECRET || "";
+
+  console.log("Webhook body:", body);
+  console.log("Webhook data:", data);
+
+  const nextReq = new NextRequest(req);
+  const rawBody = await nextReq.text();
+  const webhookSignature = nextReq.headers.get("x-cc-webhook-signature") || "";
+
+console.log("Webhook signature:",rawBody, webhookSignature);
 
   try {
     const event = Webhook.verifyEventBody(
-      req.rawBody,
-      req.headers["x-cc-webhook-signature"],
+      rawBody,
+      webhookSignature,
       secret
     );
 
