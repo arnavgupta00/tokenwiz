@@ -28,7 +28,7 @@ export async function POST(req: Request, res: Response) {
     const charge = await resources.Charge.create(chargeData);
 
     await createTransactions({
-      amount: item.price,
+      amount: parseFloat(item.price),
       sessionID: charge.id,
       Tokens: item.quantity,
       Status: "Initiated",
