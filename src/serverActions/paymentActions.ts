@@ -17,7 +17,7 @@ const prisma = prismaConnect;
 export const createTransactions = async (transaction: Transaction) => {
   const newUser = await prisma.transaction.create({
     data: {
-      amount: transaction.amount,
+      amount: parseFloat(transaction.amount.toString()),
       Tokens: transaction.Tokens,
       sessionID: transaction.sessionID,
       Status: transaction.Status,
