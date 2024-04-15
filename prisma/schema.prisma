@@ -28,7 +28,7 @@ model User {
 
 model Transaction {
   id            Int      @id @default(autoincrement())
-  amountUSD     Float
+  amount        Float
   sessionID     String   @unique
   Tokens        Float
   Status        String

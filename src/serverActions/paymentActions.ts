@@ -17,12 +17,13 @@ const prisma = prismaConnect;
 export const createTransactions = async (transaction: Transaction) => {
   const newUser = await prisma.transaction.create({
     data: {
-      amountUSD: transaction.amount,
+      amount: transaction.amount,
       Tokens: transaction.Tokens,
       sessionID: transaction.sessionID,
       Status: transaction.Status,
       description: transaction.description,
       userEmail: transaction.userEmail,
+      modeOfPayment: transaction.modeOfPayment,
     },
   });
 
