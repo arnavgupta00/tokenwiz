@@ -80,13 +80,33 @@ export default function Page() {
     }
   };
 
+  const handleCoinbasePayment = async (items: {
+    name: string;
+    description: string;
+    price: any;
+    modeOfPayment: string;
+    userEmail: string;
+  }) => {
+    const res = await fetch("/api/coinbase/createCharge", {
+      method: "POST",
+      body: JSON.stringify({ item: items }),
+    });
+    const data = await res.json();
+    if (data.charge) {
+      // Redirect to hosted_url or use code for custom checkout
+      window.location.href = data.charge.hosted_url;
+    } else {
+      console.error("Error creating charge");
+      // Handle error
+    }
+  };
+
   useEffect(() => {
     async function fetchData() {
       const data = await getUserData();
       setData(data);
 
       console.log(data);
-
     }
 
     fetchData();
@@ -368,21 +388,35 @@ export default function Page() {
                   </p>
                 </div>
                 <div className="pay-buttons">
-                  <div className="pay-button">
+                  <div
+                    className="pay-button"
+                    onClick={() => {
+                      if (data.session !== null && data.session.user !== null) {
+                        handleCoinbasePayment({
+                          name: "Token",
+                          description: "Make Payment To Proceed",
+                          price: amountContribution,
+                          modeOfPayment: modeOfPayment,
+                          
+                          userEmail: data.session.user.email,
+                        });
+                      }
+                    }}
+                  >
                     <a
                       href="#"
                       data-toggle="modal"
                       data-target="#get-pay-address"
                       className="btn btn-light-alt btn-between w-100"
                     >
-                      Get Address for Payment <em className="ti ti-wallet"></em>
+                      Pay With Crypto <em className="ti ti-wallet"></em>
                     </a>
                   </div>
                   <div className="pay-button-sap">or</div>
                   <div
                     className="pay-button"
                     onClick={() => {
-                      if ( data.session !== null && data.session.user !== null) {
+                      if (data.session !== null && data.session.user !== null) {
                         handleClick({
                           name: "Token",
                           description: "Make Payment To Proceed",
@@ -391,7 +425,7 @@ export default function Page() {
                             amountContribution,
                             modeOfPayment
                           ),
-                          userEmail: data.session.user.email ,
+                          userEmail: data.session.user.email,
                         });
                       }
                     }}
