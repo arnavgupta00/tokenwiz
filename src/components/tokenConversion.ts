@@ -1,4 +1,4 @@
-
+export const tokenPerUSD = 1
 
 export const tokenPerMode = {
     USD : 1,
