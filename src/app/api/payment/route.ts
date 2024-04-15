@@ -38,11 +38,12 @@ export async function POST(req: any) {
       });
       console.log("Session ID: ", session.id);
       await createTransactions({
-        amountUSD: item.price,
+        amount: item.price,
         sessionID: session.id,
         Tokens: item.quantity,
         Status: "Pending",
         description: item.description,
+        modeOfPayment: item.modeOfPayment,
         userEmail: item.userEmail,
       });
       return NextResponse.json({ sessionId: session.id }, { status: 200 });

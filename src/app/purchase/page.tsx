@@ -59,6 +59,7 @@ export default function Page() {
     price: any;
     quantity: any;
     userEmail: string;
+    modeOfPayment: string;
   }) => {
     const stripe = await stripePromise;
 
@@ -85,6 +86,7 @@ export default function Page() {
     description: string;
     price: any;
     modeOfPayment: string;
+    quantity: any;
     userEmail: string;
   }) => {
     const res = await fetch("/api/coinbase/createCharge", {
@@ -93,7 +95,7 @@ export default function Page() {
     });
     const data = await res.json();
     if (data.charge) {
-      // Redirect to hosted_url or use code for custom checkout
+      console.log("Charge created", data);
       window.location.href = data.charge.hosted_url;
     } else {
       console.error("Error creating charge");
@@ -397,7 +399,10 @@ export default function Page() {
                           description: "Make Payment To Proceed",
                           price: amountContribution,
                           modeOfPayment: modeOfPayment,
-                          
+                          quantity: priceCalculator(
+                            amountContribution,
+                            modeOfPayment
+                          ),
                           userEmail: data.session.user.email,
                         });
                       }
@@ -425,6 +430,7 @@ export default function Page() {
                             amountContribution,
                             modeOfPayment
                           ),
+                          modeOfPayment: modeOfPayment,
                           userEmail: data.session.user.email,
                         });
                       }

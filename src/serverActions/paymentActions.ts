@@ -3,12 +3,13 @@
 import { prismaConnect } from "@/db/prismaGenerate";
 
 interface Transaction {
-  amountUSD: number;
+  amount: number;
   sessionID: string;
   Tokens: number;
   Status: string;
   description?: string | null;
   userEmail: string;
+  modeOfPayment: string;
 }
 
 const prisma = prismaConnect;
@@ -16,7 +17,7 @@ const prisma = prismaConnect;
 export const createTransactions = async (transaction: Transaction) => {
   const newUser = await prisma.transaction.create({
     data: {
-      amountUSD: transaction.amountUSD,
+      amountUSD: transaction.amount,
       Tokens: transaction.Tokens,
       sessionID: transaction.sessionID,
       Status: transaction.Status,
