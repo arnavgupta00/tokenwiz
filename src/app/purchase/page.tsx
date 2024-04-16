@@ -425,7 +425,7 @@ export default function Page() {
                         handleClick({
                           name: "Token",
                           description: "Make Payment To Proceed",
-                          price: 1 / tokenPerMode.USD,
+                          price: amountContribution,
                           quantity: priceCalculator(
                             amountContribution,
                             modeOfPayment

@@ -1,6 +1,7 @@
 import Stripe from "stripe";
 import { NextRequest, NextResponse } from "next/server";
 import { createTransactions } from "@/serverActions/paymentActions";
+import { tokenPerMode } from "@/components/tokenConversion";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
   apiVersion: "2024-04-10",
@@ -27,7 +28,7 @@ export async function POST(req: any) {
                 name: item.name,
                 description: item.description,
               },
-              unit_amount: item.price * 100, // Convert to cents
+              unit_amount: (1 / tokenPerMode.USD) * 100, // Convert to cents
             },
             quantity: item.quantity,
           },
