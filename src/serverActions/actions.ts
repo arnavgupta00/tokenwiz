@@ -1,8 +1,25 @@
 "use server";
+import { prismaConnect } from "@/db/prismaGenerate";
 
 import { NEXT_AUTH_CONFIG } from "@/db/authConfig";
 import { getServerSession } from "next-auth";
 
+const prisma = prismaConnect;
+export interface User {
+  id?: number;
+  name: string;
+  email: string;
+  mobile?: string;
+  dateOfBirth?: Date;
+  address?: string;
+  city?: string;
+  state?: string;
+  country?: string;
+
+  password: string;
+  createdAt?: Date;
+  totalToken?: number;
+}
 export default async function getUserData() {
   const session = await getServerSession(NEXT_AUTH_CONFIG);
   const authenticated = session?.user?.name ? true : false;
@@ -14,3 +31,25 @@ export default async function getUserData() {
   return { authenticated, session, user };
 }
 
+export async function getFullUserData(email: string) {
+  const user = await prisma.user.findUnique({
+    where: {
+      email: email,
+    },
+  });
+
+  return user;
+}
+
+export async function updateUser(email: string, data: any) {
+  const updatedUser = await prisma.user.update({
+    where: {
+      email: email,
+    },
+    data: {
+      ...data,
+    },
+  });
+
+  return updatedUser;
+}

@@ -15,15 +15,18 @@ datasource db {
 }
 
 model User {
-  id         Int           @id @default(autoincrement())
-  name       String
-  email      String        @unique
-  password   String
-  createdAt  DateTime      @default(now())
-  categories String
-  totalToken Float
-  expenses   Transaction[]
-  tasks      Task[]
+  id          Int           @id @default(autoincrement())
+  name        String
+  email       String        @unique
+  password    String
+  mobile      String?
+  country     String?
+  dateOfBirth DateTime?
+  createdAt   DateTime      @default(now())
+  categories  String
+  totalToken  Float
+  expenses    Transaction[]
+  tasks       Task[]
 }
 
 model Transaction {
