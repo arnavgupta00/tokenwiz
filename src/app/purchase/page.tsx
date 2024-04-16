@@ -390,69 +390,77 @@ export default function Page() {
                   </p>
                 </div>
                 <div className="pay-buttons">
-                  <div
-                    className="pay-button"
-                    onClick={() => {
-                      if (data.session !== null && data.session.user !== null) {
-                        handleCoinbasePayment({
-                          name: "Token",
-                          description: "Make Payment To Proceed",
-                          price: amountContribution,
-                          modeOfPayment: modeOfPayment,
-                          quantity: priceCalculator(
-                            amountContribution,
-                            modeOfPayment
-                          ),
-                          userEmail: data.session.user.email,
-                        });
-                      }
-                    }}
-                  >
-                    <a
-                      href="#"
-                      data-toggle="modal"
-                      data-target="#get-pay-address"
-                      className="btn btn-light-alt btn-between w-100"
+                  {modeOfPayment === "USD" ? (
+                    <div
+                      className="pay-button"
+                      onClick={() => {
+                        if (
+                          data.session !== null &&
+                          data.session.user !== null
+                        ) {
+                          handleClick({
+                            name: "Token",
+                            description: "Make Payment To Proceed",
+                            price: amountContribution,
+                            quantity: priceCalculator(
+                              amountContribution,
+                              modeOfPayment
+                            ),
+                            modeOfPayment: modeOfPayment,
+                            userEmail: data.session.user.email,
+                          });
+                        }
+                      }}
                     >
-                      Pay With Crypto <em className="ti ti-wallet"></em>
-                    </a>
-                  </div>
-                  <div className="pay-button-sap">or</div>
-                  <div
-                    className="pay-button"
-                    onClick={() => {
-                      if (data.session !== null && data.session.user !== null) {
-                        handleClick({
-                          name: "Token",
-                          description: "Make Payment To Proceed",
-                          price: amountContribution,
-                          quantity: priceCalculator(
-                            amountContribution,
-                            modeOfPayment
-                          ),
-                          modeOfPayment: modeOfPayment,
-                          userEmail: data.session.user.email,
-                        });
-                      }
-                    }}
-                  >
-                    <a
-                      href="#"
-                      data-toggle="modal"
-                      data-target="#pay-online"
-                      className="btn btn-primary btn-between w-100"
+                      <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#pay-online"
+                        className="btn btn-primary btn-between w-100"
+                      >
+                        Make Online Payment{" "}
+                        <em className="ti ti-arrow-right"></em>
+                      </a>
+                    </div>
+                  ) : (
+                    <div
+                      className="pay-button"
+                      onClick={() => {
+                        if (
+                          data.session !== null &&
+                          data.session.user !== null
+                        ) {
+                          handleCoinbasePayment({
+                            name: "Token",
+                            description: "Make Payment To Proceed",
+                            price: amountContribution,
+                            modeOfPayment: modeOfPayment,
+                            quantity: priceCalculator(
+                              amountContribution,
+                              modeOfPayment
+                            ),
+                            userEmail: data.session.user.email,
+                          });
+                        }
+                      }}
                     >
-                      Make Online Payment{" "}
-                      <em className="ti ti-arrow-right"></em>
-                    </a>
-                  </div>
+                      <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#get-pay-address"
+                        className="btn btn-light-alt btn-between w-100"
+                      >
+                        Pay With Crypto <em className="ti ti-wallet"></em>
+                      </a>
+                    </div>
+                  )}
                 </div>
                 <div className="pay-notes">
                   <div className="note note-plane note-light note-md font-italic">
                     <em className="fas fa-info-circle"></em>
                     <p>
                       Tokens will appear in your account after payment
-                      successfully made and approved by our team.{" "}
+                      successfully made and approved by our team, it may take upto 1 hour.{" "}
                       <br className="d-none d-lg-block" /> Please note that, TWZ
                       tokens will distributed end of ICO Token Sales.{" "}
                     </p>

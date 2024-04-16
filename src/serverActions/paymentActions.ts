@@ -2,7 +2,8 @@
 
 import { prismaConnect } from "@/db/prismaGenerate";
 
-interface Transaction {
+export interface Transaction {
+  id?: number;
   amount: number;
   sessionID: string;
   Tokens: number;
@@ -10,6 +11,8 @@ interface Transaction {
   description?: string | null;
   userEmail: string;
   modeOfPayment: string;
+  createdAt?: Date;
+
 }
 
 const prisma = prismaConnect;

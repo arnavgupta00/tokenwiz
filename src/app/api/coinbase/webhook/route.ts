@@ -31,10 +31,10 @@ export async function POST(req: any) {
 
     } else if (event.type === "charge:pending") {
       if (transaction) {
-        await updateTransaction(event.data.id, "Pending");
+        await updateTransaction(event.data.id, "Progress");
       }
 
-      console.log("Charge pending");
+      console.log("Charge in progress");
       
     } else if (event.type === "charge:confirmed") {
       if (transaction) {

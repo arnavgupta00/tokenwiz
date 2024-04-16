@@ -3,34 +3,20 @@ import Nav from "@/components/navbar";
 import NavbarNav from "@/components/navbarNavigate";
 import Footer from "@/components/footer";
 import { Metadata } from "next";
-interface Transaction {
-  id: number;
-  amountTWZ: number;
-  amountUSD: number;
-  form: string;
-  status: string;
-  date: string;
-  type: "Purchase" | "Bonus";
-}
+import { Transaction, getTransactions } from "@/serverActions/paymentActions";
+import getUserData from "@/serverActions/actions";
+import { Clipboard } from "lucide-react";
+
 export const metadata: Metadata = {
   title: "Buy Token's",
   description: "Token Wiz Buy Token's Page",
 };
 
-export default function Page() {
-  const transactions: Transaction[] = [];
-  for (let i = 0; i < 8; i++) {
-    transactions.push({
-      id: i,
-      amountTWZ: 18750,
-      amountUSD: 245.52,
-      form: "1F1T...4XQX",
-      status: "Completed",
-      date: "2018-08-24 10:20 PM",
-      type: "Purchase",
-    });
-  }
-
+export default async function Page() {
+  var transactions: Transaction[] = [];
+  const data = await getUserData();
+  transactions = await getTransactions(data.session?.user?.email || "");
+  transactions.reverse();
   return (
     <div
       className="flex flex-col justify-center items-center gap-8 bg-gray-300 "
@@ -49,19 +35,93 @@ export default function Page() {
             <table className="data-table dt-init user-tnx">
               <thead>
                 <tr className="data-item data-head">
-                  <th className="data-col dt-tnxno">Tranx NO</th>
+                  <th className="data-col dt-tnxno ">Tranx NO</th>
                   <th className="data-col dt-token">Tokens</th>
                   <th className="data-col dt-amount">Amount</th>
-                  <th className="data-col dt-usd-amount">USD Amount</th>
-                  <th className="data-col dt-account">From</th>
+                  <th className="data-col dt-usd-amount">Session ID</th>
+                  <th className="data-col dt-account">Type</th>
                   <th className="data-col dt-type">
-                    <div className="dt-type-text">Type</div>
+                    <div className="dt-type-text">More Details</div>
                   </th>
                   <th className="data-col"></th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="data-item">
+                {transactions.map((transaction: Transaction) => {
+                  return (
+                    <tr className="data-item">
+                      <td className="data-col dt-tnxno">
+                        <div className="d-flex align-items-center">
+                          <div
+                            className={
+                              "data-state " +
+                              (transaction.Status === "Initiated" ||
+                              transaction.Status === "Created" ||
+                              transaction.Status === "Pending"
+                                ? "data-state-pending"
+                                : transaction.Status === "Progress"
+                                ? "data-state-progress"
+                                : transaction.Status === "Failed" ||
+                                  transaction.Status === "Cancelled"
+                                ? "data-state-canceled"
+                                : transaction.Status === "Success"
+                                ? "data-state-approved"
+                                : "")
+                            }
+                          >
+                            <span className="d-none">{transaction.Status}</span>
+                          </div>
+                          <div className="fake-class">
+                            <span className="lead tnx-id">
+                              2024-{transaction.id}
+                            </span>
+                            <span className="sub sub-date text-xs">
+                              <p className="text-xs">{transaction.createdAt?.toLocaleString()}</p>
+                            </span>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="data-col dt-token">
+                        <span className="lead token-amount">
+                          {transaction.Tokens}
+                        </span>
+                        <span className="sub sub-symbol">TWZ</span>
+                      </td>
+                      <td className="data-col dt-amount">
+                        <span className="lead amount-pay">
+                          {transaction.amount}
+                        </span>
+                        <span className="sub sub-symbol">
+                          {transaction.modeOfPayment}
+                          
+                        </span>
+                      </td>
+
+                      <td className="data-col dt-account">
+                        <span className="lead user-info">
+                          {transaction.sessionID.slice(0, 10) + "..."}
+                        </span>
+                      </td>
+                      <td className="data-col dt-type">
+                        <span className="dt-type-md badge badge-outline badge-success badge-md">
+                          Purchase
+                        </span>
+                        <span className="dt-type-sm badge badge-sq badge-outline badge-success badge-md">
+                          P
+                        </span>
+                      </td>
+                      <td className="data-col text-center ">
+                        <a
+                          href={"/transactions/" + transaction.sessionID}
+                          className="btn btn-light-alt btn-xs btn-icon"
+                        >
+                          <em className="ti ti-eye"></em>
+                        </a>
+                      </td>
+                    </tr>
+                  );
+                })}
+                {/* <tr className="data-item">
                   <td className="data-col dt-tnxno">
                     <div className="d-flex align-items-center">
                       <div className="data-state data-state-pending">
@@ -226,7 +286,6 @@ export default function Page() {
                   <td className="data-col text-right">
                     <a
                       href="/transactions/1"
-                      
                       className="btn btn-light-alt btn-xs btn-icon"
                     >
                       <em className="ti ti-eye"></em>
@@ -598,7 +657,7 @@ export default function Page() {
                       <em className="ti ti-eye"></em>
                     </a>
                   </td>
-                </tr>
+                </tr> */}
               </tbody>
             </table>
           </div>
