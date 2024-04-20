@@ -22,7 +22,7 @@ export default async function Page() {
   
 
   const data = await getUserData();
-  const userFullData = await getFullUserData(data.session.user.email);
+  const userFullData = await getFullUserData(data.session?.user.email);
 
 
   return (

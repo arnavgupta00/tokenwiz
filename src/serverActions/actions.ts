@@ -33,6 +33,7 @@ export default async function getUserData() {
 }
 
 export async function getFullUserData(email: string) {
+  if(!email) return null;
   const user = await prisma.user.findUnique({
     where: {
       email: email,

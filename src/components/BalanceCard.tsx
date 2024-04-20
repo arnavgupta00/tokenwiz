@@ -14,7 +14,7 @@ export default function BalanceCard() {
     useEffect(() => {
         async function fetchData() {
             const data = await getUserData();
-            const userDataFetch = await getFullUserData(data.session.user.email);
+            const userDataFetch = await getFullUserData(data.session?.user.email);
             setUserData(userDataFetch);
         }
         fetchData();

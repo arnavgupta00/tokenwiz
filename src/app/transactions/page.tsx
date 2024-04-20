@@ -20,7 +20,7 @@ export default async function Page() {
   return (
     <div
       className="flex flex-col justify-center items-center gap-8 bg-gray-300 "
-      style={{ overflowX: "hidden" }}
+      style={{ overflowX: "hidden" , }}
     >
       <div className="pb-8">
         <Nav></Nav>
