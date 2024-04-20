@@ -9,25 +9,23 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { getFullUserData, updateUser, User } from "@/serverActions/actions";
 import { useEffect, useState } from "react";
-export default function ProfileCard(props: { userData: any }) {
+export default function ProfileCard(props: { userFullData: any }) {
   const [userData, setUserData] = useState<any | null>({
-    name: "",
-    email: "",
-    mobile: "",
-    dateOfBirth: Dayjs,
-    address: "",
-    city: "",
-    state: "",
-    country: "",
-    password: "",
+    ...props.userFullData,
   });
+
+  
 
   const [change, setChange] = useState(false);
   const [updateReview, setUpdateReview] = useState("");
-  const [loading, setLoading] = useState(false);
-  const data = props.userData;
 
-  var userDataInit;
+  const [toShow, setToShow] = useState("personal-data");
+  const [passwordChange, setPasswordChange] = useState({
+    oldPassword: "",
+    newPassword: "",
+    confirmNewPassword: "",
+  });
+  const [passwordChangeSuccess, setPasswordChangeSuccess] = useState(false);
 
   const countryOptions = [
     { value: "Afghanistan", label: "Afghanistan" },
@@ -330,18 +328,7 @@ export default function ProfileCard(props: { userData: any }) {
     );
     return dateOfBirth <= eighteenYearsAgo;
   }
-  useEffect(() => {
-    const fetchUserData = async () => {
-      setLoading(true);
-      const userCall = await getFullUserData(data.session.user.email);
-      userDataInit = userCall;
-      setUserData(userCall);
-      setLoading(false);
-    };
-
-    fetchUserData();
-  }, []);
-  if(loading) return <div>Loading...</div>
+ 
   return (
     <div className="content-area card">
       <div className="card-innr">
@@ -349,154 +336,174 @@ export default function ProfileCard(props: { userData: any }) {
           <h4 className="card-title">Profile Details</h4>
         </div>
         <ul className="nav nav-tabs nav-tabs-line" role="tablist">
-          <li className="nav-item">
+          <li className="nav-item" onClick={() => setToShow("personal-data")}>
             <a
-              className="nav-link active"
+              className={`nav-link ${
+                toShow == "personal-data" ? "active" : ""
+              } `}
               data-toggle="tab"
-              href="#personal-data"
             >
               Personal Data
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" data-toggle="tab" href="#settings">
+          {/* <li className="nav-item" onClick={() => setToShow("settings")}>
+            <a
+              className={`nav-link ${toShow == "settings" ? "active" : ""} `}
+              data-toggle="tab"
+            >
               Settings
             </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" data-toggle="tab" href="#password">
+          </li> */}
+          <li className="nav-item" onClick={() => setToShow("password")}>
+            <a
+              className={`nav-link ${toShow == "password" ? "active" : ""} `}
+              data-toggle="tab"
+            >
               Password
             </a>
           </li>
         </ul>
-        <div className="tab-content" id="profile-details">
-          <div className="tab-pane fade show active" id="personal-data">
-            <form action="#">
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="input-item input-with-label">
-                    <label htmlFor="full-name" className="input-item-label">
-                      Full Name
-                    </label>
-                    <input
-                      className="input-bordered"
-                      type="text"
-                      id="full-name"
-                      name="full-name"
-                      value={userData?.name}
-                    />
+        {toShow === "personal-data" ? (
+          <div className="tab-content" id="profile-details">
+            <div className="tab-pane fade show active" id="personal-data">
+              <form>
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="input-item input-with-label">
+                      <label htmlFor="full-name" className="input-item-label">
+                        Full Name
+                      </label>
+                      <input
+                        className="input-bordered"
+                        type="text"
+                        id="full-name"
+                        name="full-name"
+                        value={userData?.name}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="input-item input-with-label">
+                      <label
+                        htmlFor="email-address"
+                        className="input-item-label"
+                      >
+                        Email Address
+                      </label>
+                      <input
+                        className="input-bordered"
+                        type="text"
+                        id="email-address"
+                        name="email-address"
+                        value={userData?.email}
+                        disabled
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="input-item input-with-label">
+                      <label
+                        htmlFor="mobile-number"
+                        className="input-item-label"
+                      >
+                        Mobile Number (Country Code + Area Code + Number)
+                      </label>
+                      <input
+                        className="input-bordered"
+                        type="text"
+                        id="mobile-number"
+                        name="mobile-number"
+                        value={userData?.mobile}
+                        onChange={(e) => {
+                          setUserData({ ...userData, mobile: e.target.value });
+                          setChange(true);
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="input-item input-with-label">
+                      <label
+                        htmlFor="date-of-birth"
+                        className="input-item-label"
+                      >
+                        Date of Birth
+                      </label>
+                      <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DemoContainer components={["DatePicker"]}>
+                          <DatePicker
+                            className="p-0 m-0 h-16"
+                            value={dayjs(userData?.dateOfBirth)}
+                            onChange={(newValue) => {
+                              console.log(newValue?.toDate());
+                              setUserData({
+                                ...userData,
+                                dateOfBirth: newValue,
+                              });
+                              setChange(true);
+                            }}
+                          />
+                        </DemoContainer>
+                      </LocalizationProvider>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="input-item input-with-label">
+                      <label htmlFor="nationality" className="input-item-label">
+                        Nationality
+                      </label>
+                      <select
+                        className="select-bordered select-    block"
+                        name="nationality"
+                        id="nationality"
+                        value={userData?.country}
+                        onChange={(e) => {
+                          setUserData({ ...userData, country: e.target.value });
+                          setChange;
+                        }}
+                      >
+                        {countryOptions.map((country) => (
+                          <option value={country.value}>{country.label}</option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
                 </div>
-                <div className="col-md-6">
-                  <div className="input-item input-with-label">
-                    <label htmlFor="email-address" className="input-item-label">
-                      Email Address
-                    </label>
-                    <input
-                      className="input-bordered"
-                      type="text"
-                      id="email-address"
-                      name="email-address"
-                      value={userData?.email}
-                      disabled
-                    />
-                  </div>
+                <div className="gaps-1x"></div>
+                <div className="d-sm-flex justify-content-between align-items-center">
+                  <button
+                    className="btn btn-primary"
+                    onClick={async () => {
+                      if (!isOver18(userData.dateOfBirth.toDate())) {
+                        setUpdateReview("You must be over 18 years old");
+                        return;
+                      } else {
+                        await updateUser(props.userFullData.email, {
+                          mobile: userData.mobile,
+                          country: userData.country,
+                          dateOfBirth: userData.dateOfBirth.toDate(),
+                        });
+                      }
+                    }}
+                  >
+                    Update Profile
+                  </button>
+                  <div className="gaps-2x d-sm-none"></div>
+                  {updateReview && (
+                    <span className="text-red-500">{updateReview}</span>
+                  )}
+                  {!change && (
+                    <span className="text-success">
+                      <em className="ti ti-check-box"></em> All Changes are
+                      saved
+                    </span>
+                  )}
                 </div>
-                <div className="col-md-6">
-                  <div className="input-item input-with-label">
-                    <label htmlFor="mobile-number" className="input-item-label">
-                      Mobile Number (Country Code + Area Code + Number)
-                    </label>
-                    <input
-                      className="input-bordered"
-                      type="text"
-                      id="mobile-number"
-                      name="mobile-number"
-                      value={userData?.mobile}
-                      onChange={(e) => {
-                        setUserData({ ...userData, mobile: e.target.value });
-                        setChange(true);
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="input-item input-with-label">
-                    <label htmlFor="date-of-birth" className="input-item-label">
-                      Date of Birth
-                    </label>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                      <DemoContainer components={["DatePicker"]}>
-                        <DatePicker
-                          className="p-0 m-0 h-16"
-                          value={dayjs(userData?.dateOfBirth)}
-                          onChange={(newValue) => {
-                            console.log(newValue?.toDate());
-                            setUserData({
-                              ...userData,
-                              dateOfBirth: newValue,
-                            });
-                            setChange(true);
-                          }}
-                        />
-                      </DemoContainer>
-                    </LocalizationProvider>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="input-item input-with-label">
-                    <label htmlFor="nationality" className="input-item-label">
-                      Nationality
-                    </label>
-                    <select
-                      className="select-bordered select-    block"
-                      name="nationality"
-                      id="nationality"
-                      value={userData?.country}
-                      onChange={(e) => {
-                        setUserData({ ...userData, country: e.target.value });
-                        setChange;
-                      }}
-                    >
-                      {countryOptions.map((country) => (
-                        <option value={country.value}>{country.label}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div className="gaps-1x"></div>
-              <div className="d-sm-flex justify-content-between align-items-center">
-                <button
-                  className="btn btn-primary"
-                  onClick={async () => {
-                    if (!isOver18(userData.dateOfBirth.toDate())) {
-                      setUpdateReview("You must be over 18 years old");
-                      return;
-                    } else {
-                      await updateUser(data.session.user.email, {
-                        mobile: userData.mobile,
-                        country: userData.country,
-                        dateOfBirth: userData.dateOfBirth.toDate(),
-                      });
-                    }
-                  }}
-                >
-                  Update Profile
-                </button>
-                <div className="gaps-2x d-sm-none"></div>
-                {updateReview && (
-                  <span className="text-red-500">{updateReview}</span>
-                )}
-                {!change && (
-                  <span className="text-success">
-                    <em className="ti ti-check-box"></em> All Changes are saved
-                  </span>
-                )}
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
-          <div className="tab-pane fade" id="settings">
+        ) : toShow === "settings" ? (
+          <div className="tab-pane row col-md-6 " id="settings">
             <div className="pdb-1-5x">
               <h5 className="card-title card-title-sm text-dark">
                 Security Settings
@@ -556,25 +563,29 @@ export default function ProfileCard(props: { userData: any }) {
               </span>
             </div>
           </div>
-
-          <div className="tab-pane fade" id="password">
-            <div className="row">
-              <div className="col-md-6">
+        ) : toShow === "password" ? (
+          <div className="tab-pane row col-md-12 w-full" id="password">
+            <div className="md:w-2/5">
+              <div className="">
                 <div className="input-item input-with-label">
                   <label htmlFor="old-pass" className="input-item-label">
-                    Old Password
+                    Old Password (Not available for Google Auth )
                   </label>
                   <input
                     className="input-bordered"
                     type="password"
                     id="old-pass"
                     name="old-pass"
+                    value={passwordChange.oldPassword}
+                    onChange={(e) =>{
+                      setPasswordChange({...passwordChange, oldPassword: e.target.value})
+                    }}
                   />
                 </div>
               </div>
             </div>
-            <div className="row">
-              <div className="col-md-6">
+            <div className="w-full flex-row md:flex  gap-8">
+              <div className="md:w-2/5 ">
                 <div className="input-item input-with-label">
                   <label htmlFor="new-pass" className="input-item-label">
                     New Password
@@ -584,10 +595,14 @@ export default function ProfileCard(props: { userData: any }) {
                     type="password"
                     id="new-pass"
                     name="new-pass"
+                    value={passwordChange.newPassword}
+                    onChange={(e) =>{
+                      setPasswordChange({...passwordChange, newPassword: e.target.value})
+                    }}
                   />
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="md:w-2/5">
                 <div className="input-item input-with-label">
                   <label htmlFor="confirm-pass" className="input-item-label">
                     Confirm New Password
@@ -597,27 +612,38 @@ export default function ProfileCard(props: { userData: any }) {
                     type="password"
                     id="confirm-pass"
                     name="confirm-pass"
+                    value={passwordChange.confirmNewPassword}
+                    onChange={(e) =>{
+                      setPasswordChange({...passwordChange, confirmNewPassword: e.target.value})
+                    }}
                   />
                 </div>
               </div>
             </div>
-            <div className="note note-plane note-info pdb-1x">
+            <div className="note note-plane note-info pdb-1x col-md-12">
               <em className="fas fa-info-circle"></em>
               <p>
-                Password should be minmum 8 letter and include lower and
-                uppercase letter.
+                {passwordChange.newPassword === passwordChange.confirmNewPassword ? "Password should be minmum 8 letter and include lower and uppercase letter" : "Passwords do not match"}
+                
               </p>
             </div>
             <div className="gaps-1x"></div>
             <div className="d-sm-flex justify-content-between align-items-center">
-              <button className="btn btn-primary">Update</button>
+              <button className="btn btn-primary" onClick={()=>{
+                if(passwordChange.newPassword === passwordChange.confirmNewPassword){
+                  setPasswordChangeSuccess(false)
+
+                  updateUser(props.userFullData.email, {password: passwordChange.newPassword})
+                  setPasswordChangeSuccess(true)
+                }
+              }}>Update</button>
               <div className="gaps-2x d-sm-none"></div>
-              <span className="text-success">
+              {passwordChangeSuccess && <span className="text-success">
                 <em className="ti ti-check-box"></em> Changed Password
-              </span>
+              </span>}
             </div>
           </div>
-        </div>
+        ) : null}
       </div>
     </div>
   );

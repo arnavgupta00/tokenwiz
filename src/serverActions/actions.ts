@@ -3,6 +3,7 @@ import { prismaConnect } from "@/db/prismaGenerate";
 
 import { NEXT_AUTH_CONFIG } from "@/db/authConfig";
 import { getServerSession } from "next-auth";
+import Email from "next-auth/providers/email";
 
 const prisma = prismaConnect;
 export interface User {
@@ -53,3 +54,20 @@ export async function updateUser(email: string, data: any) {
 
   return updatedUser;
 }
+
+export async function getAllUsersName() {
+  const users = await prisma.user.findMany({
+    select: {
+      name: true,
+      id: true,
+      createdAt: true,
+    },
+    take: 5,
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return users;
+}
+

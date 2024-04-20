@@ -66,6 +66,19 @@ export const getTransaction = async (sessionID: string) => {
   return transaction;
 };
 
+export async function getTop3Transactions(email:string) {
+  const transactions = await prisma.transaction.findMany({
+    where: {
+      userEmail: email,
+    },
+    take: 3,
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return transactions;
+}
 export const updateToken = async (email: string, token: number) => {
   const getUser = await prisma.user.findUnique({
     where: {

@@ -1,4 +1,4 @@
-import { tokenPerUSD } from "@/components/tokenConversion";
+import { tokenPerMode, tokenPerUSD } from "@/components/tokenConversion";
 import imageLogo from "@/components/images/logo-sm.png"
 import "@/components/assets/css/vendor.bundle.css";
 import "@/components/assets/css/style.css";
@@ -16,8 +16,8 @@ export default function BannerCard() {
                 alt="logo-sm"
               />
               <div className="gaps-2x"></div>
-              <h1 className="token-info-head text-light">1 ETH = 1000 TWZ</h1>
-              <h5 className="token-info-sub">1 ETH = 254.05 USD</h5>
+              <h1 className="token-info-head text-light">1 ETH = {tokenPerMode.ETH} TWZ</h1>
+              <h5 className="token-info-sub">1 ETH = {((1/tokenPerMode.USD)* (tokenPerMode.ETH )).toFixed(1)}$</h5>
             </div>
           </div>
           <div className="col-md-6">

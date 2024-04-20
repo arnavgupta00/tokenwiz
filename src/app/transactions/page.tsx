@@ -73,10 +73,12 @@ export default async function Page() {
                           </div>
                           <div className="fake-class">
                             <span className="lead tnx-id">
-                              2024-{transaction.id}
+                              {new Date().getFullYear()}-{transaction.id}
                             </span>
                             <span className="sub sub-date text-xs">
-                              <p className="text-xs">{transaction.createdAt?.toLocaleString()}</p>
+                              <p className="text-xs">
+                                {transaction.createdAt?.toLocaleString()}
+                              </p>
                             </span>
                           </div>
                         </div>
@@ -93,7 +95,6 @@ export default async function Page() {
                         </span>
                         <span className="sub sub-symbol">
                           {transaction.modeOfPayment}
-                          
                         </span>
                       </td>
 

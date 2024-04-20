@@ -1,32 +1,14 @@
 import imageLogo from "@/components/images/logo-light-sm.png";
 import "@/components/assets/css/vendor.bundle.css";
 import "@/components/assets/css/style.css";
+import {
+  Transaction,
+  getTop3Transactions,
+} from "@/serverActions/paymentActions";
+import { get } from "http";
 
-interface Transaction {
-  id: number;
-  amountTWZ: number;
-  amountUSD: number;
-  date: string;
-  type: "Purchase" | "Bonus";
-}
-
-export default function TransactionCard() {
-  const transactions: Transaction[] = [
-    {
-      id: 1,
-      amountTWZ: 18750,
-      amountUSD: 18750 / 15,
-      date: "2018-08-24 10:20 PM",
-      type: "Purchase",
-    },
-    {
-      id: 2,
-      amountTWZ: 8052,
-      amountUSD: 8052 / 15,
-      date: "2018-08-24 10:20 PM",
-      type: "Bonus",
-    },
-  ];
+export default async function TransactionCard(props: { email: string }) {
+  const transactions = await getTop3Transactions(props.email);
 
   return (
     <div className="w-full p-0 m-0">
@@ -52,105 +34,61 @@ export default function TransactionCard() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                  <div className="d-flex align-items-center">
-                    <div className="data-state data-state-pending"></div>
-                    <span className="lead">18,750</span>
-                  </div>
-                </td>
-                <td>
-                  <span>
-                    <span className="lead">3.543</span>
-                    <span className="sub">
-                      ETH{" "}
-                      <em
-                        className="fas fa-info-circle"
-                        data-toggle="tooltip"
-                        data-placement="bottom"
-                        data-original-title="1 ETH = 590.54 USD"
-                      ></em>
-                    </span>
-                  </span>
-                </td>
-                <td className="d-none d-sm-table-cell tnx-date">
-                  <span className="sub sub-s2">2018-08-24 10:20 PM</span>
-                </td>
-                <td className="tnx-type">
-                  <span className="tnx-type-md badge badge-outline badge-success badge-md">
-                    Purchase
-                  </span>
-                  <span className="tnx-type-sm badge badge-sq badge-outline badge-success badge-md">
-                    P
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="d-flex align-items-center">
-                    <div className="data-state data-state-progress"></div>
-                    <span className="lead">8,052</span>
-                  </div>
-                </td>
-                <td>
-                  <span>
-                    <span className="lead">0.165</span>
-                    <span className="sub">
-                      BTC{" "}
-                      <em
-                        className="fas fa-info-circle"
-                        data-toggle="tooltip"
-                        data-placement="bottom"
-                        data-original-title="1 BTC = 5450.54 USD"
-                      ></em>
-                    </span>
-                  </span>
-                </td>
-                <td className="d-none d-sm-table-cell tnx-date">
-                  <span className="sub sub-s2">2018-08-24 10:20 PM</span>
-                </td>
-                <td className="tnx-type">
-                  <span className="tnx-type-md badge badge-outline badge-warning badge-md">
-                    Bonus
-                  </span>
-                  <span className="tnx-type-sm badge badge-sq badge-outline badge-warning badge-md">
-                    B
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="d-flex align-items-center">
-                    <div className="data-state data-state-approved"></div>
-                    <span className="lead">19,000</span>
-                  </div>
-                </td>
-                <td>
-                  <span>
-                    <span className="lead">3.141</span>
-                    <span className="sub">
-                      LTC{" "}
-                      <em
-                        className="fas fa-info-circle"
-                        data-toggle="tooltip"
-                        data-placement="bottom"
-                        data-original-title="1 LTC = 180.54 USD"
-                      ></em>
-                    </span>
-                  </span>
-                </td>
-                <td className="d-none d-sm-table-cell tnx-date">
-                  <span className="sub sub-s2">2018-08-24 10:20 PM</span>
-                </td>
-                <td className="tnx-type">
-                  <span className="tnx-type-md badge badge-outline badge-warning badge-md">
-                    Bonus
-                  </span>
-                  <span className="tnx-type-sm badge badge-sq badge-outline badge-warning badge-md">
-                    B
-                  </span>
-                </td>
-              </tr>
+              {transactions.map((transaction: Transaction) => {
+                return (
+                  <tr>
+                    <td>
+                      <div className="d-flex align-items-center">
+                        <div
+                          className={
+                            "data-state " +
+                            (transaction.Status === "Initiated" ||
+                            transaction.Status === "Created" ||
+                            transaction.Status === "Pending"
+                              ? "data-state-pending"
+                              : transaction.Status === "Progress"
+                              ? "data-state-progress"
+                              : transaction.Status === "Failed" ||
+                                transaction.Status === "Cancelled"
+                              ? "data-state-canceled"
+                              : transaction.Status === "Success"
+                              ? "data-state-approved"
+                              : "")
+                          }
+                        ></div>
+                        <span className="lead">{transaction.Tokens}</span>
+                      </div>
+                    </td>
+                    <td>
+                      <span>
+                        <span className="lead">{transaction.amount}</span>
+                        <span className="sub">
+                          {transaction.modeOfPayment}
+                          <em
+                            className="fas fa-info-circle"
+                            data-toggle="tooltip"
+                            data-placement="bottom"
+                            data-original-title="1 ETH = 590.54 USD"
+                          ></em>
+                        </span>
+                      </span>
+                    </td>
+                    <td className="d-none d-sm-table-cell tnx-date">
+                      <span className="sub sub-s2">
+                        {transaction.createdAt?.toLocaleString()}
+                      </span>
+                    </td>
+                    <td className="tnx-type">
+                      <span className="tnx-type-md badge badge-outline badge-success badge-md">
+                        Purchase
+                      </span>
+                      <span className="tnx-type-sm badge badge-sq badge-outline badge-success badge-md">
+                        P
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
