@@ -8,7 +8,7 @@ import getUserData from "@/serverActions/actions";
 import { Clipboard } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Buy Token's",
+  title: "Transactions",
   description: "Token Wiz Buy Token's Page",
 };
 
@@ -19,14 +19,14 @@ export default async function Page() {
   transactions.reverse();
   return (
     <div
-      className="flex flex-col justify-center items-center gap-8 bg-gray-300 "
+      className="flex flex-col justify-center items-center gap-8 bg-gray-300 md:pl-28 md:pr-28 pl-8 pr-8 "
       style={{ overflowX: "hidden" , }}
     >
       <div className="pb-8">
         <Nav></Nav>
         <NavbarNav></NavbarNav>
       </div>
-      <div className="w-full pl-28 pr-28">
+      <div className="w-full  " >
         <div className="card content-area">
           <div className="card-innr">
             <div className="card-head">

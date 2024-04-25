@@ -23,8 +23,8 @@ export default function Page() {
         <Nav></Nav>
         <NavbarNav></NavbarNav>
       </div>
-      <div className="flex flex-row justify-between items-start pr-20 pl-20">
-        <div className="w-8/12 flex flex-col justify-between items-center p-8">
+      <div className="flex flex-col-reverse md:flex-row justify-between items-start md:pr-20 md:pl-20">
+        <div className="w-12/12 md:w-8/12 flex flex-col justify-between items-center p-8">
           <div className="main-content w-full">
             <div className="content-area card">
               <div className="card-innr">
@@ -179,7 +179,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="w-4/12 flex flex-col justify-between items-center p-8 m-0">
+        <div className="w-12/12 md:w-4/12 flex flex-col justify-between items-center p-8 m-0">
           <BalanceCard></BalanceCard>
           <TokenSales></TokenSales>
         </div>

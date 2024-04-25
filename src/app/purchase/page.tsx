@@ -123,21 +123,10 @@ export default function Page() {
         <Nav></Nav>
         <NavbarNav></NavbarNav>
       </div>
-      <div className="flex flex-row justify-between items-start pr-20 pl-20">
-        <div className="w-8/12 flex flex-col justify-between items-center p-8">
+      <div className="flex flex-col md:flex-row justify-between items-start md:pr-20 md:pl-20">
+        
+        <div className=" w-12/12 md:w-8/12 flex flex-col justify-between items-center p-8">
           <div className="main-content w-full ">
-            <div className="d-lg-none">
-              <a
-                href="#"
-                data-toggle="modal"
-                data-target="#add-wallet"
-                className="btn btn-danger btn-xl btn-between w-100 mgb-1-5x"
-              >
-                Add your wallet address before buy{" "}
-                <em className="ti ti-arrow-right"></em>
-              </a>
-              <div className="gaps-1x mgb-0-5x d-lg-none d-none d-sm-block"></div>
-            </div>
             <div className="content-area card">
               <div className="card-innr">
                 <div className="card-head">
@@ -174,7 +163,6 @@ export default function Page() {
                             <em className="pay-icon cf cf-eth"></em>
                             <span className="pay-cur">ETH</span>
                           </span>
-                          <span className="pay-amount">0.000800</span>
                         </label>
                       </div>
                     </div>
@@ -195,7 +183,6 @@ export default function Page() {
                             <em className="pay-icon cf cf-ltc"></em>
                             <span className="pay-cur">LTC</span>
                           </span>
-                          <span className="pay-amount">0.001201</span>
                         </label>
                       </div>
                     </div>
@@ -216,7 +203,6 @@ export default function Page() {
                             <em className="pay-icon cf cf-btc"></em>
                             <span className="pay-cur">BTC</span>
                           </span>
-                          <span className="pay-amount">0.000015</span>
                         </label>
                       </div>
                     </div>
@@ -237,7 +223,6 @@ export default function Page() {
                             <em className="pay-icon fas fa-dollar-sign"></em>
                             <span className="pay-cur">USD</span>
                           </span>
-                          <span className="pay-amount">0.25</span>
                         </label>
                       </div>
                     </div>
@@ -460,9 +445,10 @@ export default function Page() {
                     <em className="fas fa-info-circle"></em>
                     <p>
                       Tokens will appear in your account after payment
-                      successfully made and approved by our team, it may take upto 1 hour.{" "}
-                      <br className="d-none d-lg-block" /> Please note that, TWZ
-                      tokens will distributed end of ICO Token Sales.{" "}
+                      successfully made and approved by our team, it may take
+                      upto 1 hour. <br className="d-none d-lg-block" /> Please
+                      note that, TWZ tokens will distributed end of ICO Token
+                      Sales.{" "}
                     </p>
                   </div>
                 </div>
@@ -471,7 +457,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="w-4/12 flex flex-col justify-between items-center p-8 m-0">
+        <div className="w-12/12 md:w-4/12 flex flex-col justify-between items-center p-8 m-0">
           <BalanceCard></BalanceCard>
           <TokenSales></TokenSales>
         </div>

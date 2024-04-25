@@ -36,7 +36,7 @@ export default function Page() {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
   return (
     <div
-      className="flex flex-col justify-center items-center gap-0 bg-gray-300 pl-20 pr-20"
+      className="flex flex-col justify-center items-center gap-0 bg-gray-300 md:pl-20 md:pr-20 pl-4 pr-4"
       style={{ overflowX: "hidden" }}
     >
       <div className="flex flex-col justify-center items-center  bg-gray-300 pb-8">
@@ -47,7 +47,7 @@ export default function Page() {
       <div className="page-header page-header-kyc w-full">
         <div className="container">
           <div className="row justify-content-center">
-            <div className="col-lg-8 col-xl-7 text-center">
+            <div className="text-center">
               <h2 className="page-title">Begin your ID-Verification</h2>
               <p className="large">
                 Verify your identity to participate in tokensale.
@@ -296,19 +296,16 @@ export default function Page() {
                             <div className="upload-box" {...getRootProps()}>
                               <input {...getInputProps()} />
                               {isDragActive ? (
-                                <div
-                                  className="dragNdrop border-2 border-dashed border-blue-500 p-8 w-64 bg-blue-100"
-                                  
-                                >
-                                  <p className="text-blue-500 text-blue-500 font-semibold">Drop the files here ...</p>
+                                <div className="dragNdrop border-2 border-dashed border-blue-500 p-8 w-64 bg-blue-100">
+                                  <p className="text-blue-500 text-blue-500 font-semibold">
+                                    Drop the files here ...
+                                  </p>
                                 </div>
                               ) : (
-                                <div
-                                  className="dragNdrop border-2 border-dashed border-blue-500 p-8 w-64 bg-blue-100"
-                                  
-                                >
-                                  <p className="text-blue-500 font-semibold">Drag files here, or click{" "}</p>
-                                
+                                <div className="dragNdrop border-2 border-dashed border-blue-500 p-8 w-64 bg-blue-100">
+                                  <p className="text-blue-500 font-semibold">
+                                    Drag files here, or click{" "}
+                                  </p>
                                 </div>
                               )}
                             </div>
@@ -442,7 +439,7 @@ export default function Page() {
                     </div>
                   </div>
                 </div>
-                <div className="form-step form-step3">
+                {/* <div className="form-step form-step3">
                   <div className="form-step-head card-innr">
                     <div className="step-head">
                       <div className="step-number">03</div>
@@ -496,7 +493,7 @@ export default function Page() {
                       </span>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <div className="form-step form-step-final">
                   <div className="form-step-fields card-innr">
                     <div className="input-item">

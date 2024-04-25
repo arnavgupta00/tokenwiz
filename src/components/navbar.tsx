@@ -76,14 +76,66 @@ export default function Nav() {
           <div className="d-flex justify-content-between align-items-center">
             <ul className="topbar-nav d-lg-none">
               <li className="topbar-nav-item relative">
-                <a className="toggle-nav" href="#">
-                  <div className="toggle-icon">
-                    <span className="toggle-line"></span>
-                    <span className="toggle-line"></span>
-                    <span className="toggle-line"></span>
-                    <span className="toggle-line"></span>
+                <Dropdown>
+                  <DropdownTrigger>
+                    <a className="toggle-nav" href="#">
+                      <div className="toggle-icon">
+                        <span className="toggle-line"></span>
+                        <span className="toggle-line"></span>
+                        <span className="toggle-line"></span>
+                        <span className="toggle-line"></span>
+                      </div>
+                    </a>
+                  </DropdownTrigger>
+                  <div className="border-none">
+                    <DropdownMenu
+                      aria-label="Static Actions"
+                      className="w-fit h-fit p-2 bg-gray-50 rounded border-none text-blue-500 shadow"
+                    >
+                      <DropdownItem
+                        className="w-full h-full p-2 pl-8 pr-8 bg-gray-50 hover:bg-gray-300 active:bg-black active:text-gray-50 text-blue-500 rounded-t-3xl text-lg font-sans font-semibold"
+                        key="user-dashboard"
+                        variant="solid"
+                        onClick={() => router.push("/user-dashboard")}
+                      >
+                        <em className="ikon ikon-dashboard"></em> Dashboard
+                      </DropdownItem>
+                      <DropdownItem
+                        className="w-full h-fit p-2 pl-8 pr-8 bg-gray-50 hover:bg-gray-300 active:bg-black active:text-gray-50 text-blue-500  text-lg font-sans  font-semibold "
+                        key="buy-tokens"
+                        variant="solid"
+                        onClick={() => router.push("/purchase")}
+                      >
+                        <em className="ikon ikon-coins"></em> Buy Tokens
+                      </DropdownItem>
+                      <DropdownItem
+                        className="w-full h-fit p-2 pl-8 pr-8 bg-gray-50 hover:bg-gray-300 active:bg-black active:text-gray-50 text-blue-500  text-lg font-sans  font-semibold "
+                        key="ico-distribution"
+                        variant="solid"
+                        onClick={() => router.push("/ico-distribution")}
+                      >
+                        <em className="ikon ikon-distribution"></em> ICO Distribution
+                      </DropdownItem>
+                      <DropdownItem
+                        className="w-full h-fit p-2 pl-8 pr-8 bg-gray-50 hover:bg-gray-300 active:bg-black active:text-gray-50 text-blue-500  text-lg font-sans  font-semibold "
+                        key="transactions"
+                        variant="solid"
+                        onClick={() => router.push("/transactions")}
+                      >
+                        <em className="ikon ikon-transactions"></em> Transactions
+                      </DropdownItem>
+                      <DropdownItem
+                        className="w-full h-fit p-2 pl-8 pr-8 bg-gray-50 hover:bg-gray-300 active:bg-black active:text-gray-50 text-blue-500  text-lg font-sans  font-semibold "
+                        key="profile"
+                        variant="solid"
+                        onClick={() => router.push("/profile")}
+                      >
+                        <em className="ikon ikon-user"></em> Profile
+                      </DropdownItem>
+                      
+                    </DropdownMenu>
                   </div>
-                </a>
+                </Dropdown>
               </li>
             </ul>
             <a className="topbar-logo" href="/">
@@ -106,12 +158,10 @@ export default function Nav() {
 
                 {data.authenticated ? (
                   <DropdownMenu
-                    className=" toggle-className dropdown-content dropdown-content-right dropdown-arrow-right user-dropdown drop-shadow-md
-
-"
+                    className=" toggle-className dropdown-content dropdown-content-right dropdown-arrow-right user-dropdown drop-shadow-md w-full"
                     style={{ minWidth: "250px" }}
                   >
-                    <DropdownItem as="div" className="p-4 pr-4 user-status">
+                    <DropdownItem as="div" className="p-4 pr-4 user-status w-full">
                       <h6 className="user-status-title">
                         {user}'s token balance
                       </h6>
@@ -119,7 +169,7 @@ export default function Nav() {
                         12,000,000 <small>TWZ</small>
                       </div>
                     </DropdownItem>
-                    <DropdownItem as="ul" className="user-links">
+                    <DropdownItem as="ul" className="user-links w-full">
                       <li className="text-blue-500 cursor-pointer">
                         <a href="/profile">
                           <i className="ti ti-id-badge"></i>My Profile
@@ -167,7 +217,7 @@ export default function Nav() {
                           <i className="ti ti-id-badge"></i>Login
                         </a>
                       </li>
-                      <li className="text-blue-500 cursor-pointer"> 
+                      <li className="text-blue-500 cursor-pointer">
                         <a
                           onClick={() => {
                             setShowMenuSignUp(!showmenuSignUp);
